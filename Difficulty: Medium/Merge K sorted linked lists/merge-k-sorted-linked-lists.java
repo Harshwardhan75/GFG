@@ -79,10 +79,40 @@ public class Main {
 
 class Solution {
     // Function to merge K sorted linked list.
+    
+    Node merge(Node one,Node two){
+        Node head=new Node(-1);
+        Node temp=head;
+        
+        while(one!=null && two!=null){
+            if(one.data<=two.data){
+                temp.next=one;
+                one=one.next;
+            }
+            else{
+                temp.next=two;
+                two=two.next;
+            }
+            temp=temp.next;
+        }
+        
+        if(one!=null)   temp.next=one;
+        if(two!=null)   temp.next=two;
+        
+        return head.next;
+    }
+    
+    Node UsingRecursiveCalls(List<Node> arr,int index){
+        if(index==arr.size())
+            return null;
+        
+        return merge(arr.get(index),UsingRecursiveCalls(arr,index+1));
+    }
+    
     Node mergeKLists(List<Node> arr) {
         // Add your code here.
-        return UsingQueue(arr);
-        // return UsingRecursiveCalls(arr);
+        // return UsingQueue(arr);
+        return UsingRecursiveCalls(arr,0);
     }
     
     Node UsingQueue(List<Node> arr){
