@@ -50,20 +50,10 @@ class Solution {
                 int a=pq1.size();
                 int b=pq2.size();
                 
-                if(a>b){
-                    while(b<a){
-                        a--;
-                        b++;
-                        pq2.offer(pq1.poll());
-                    }
-                }
-                else{
-                    while(a<b){
-                        a++;
-                        b--;
-                        pq1.offer(pq2.poll());
-                    }
-                }
+                if(a>b)
+                    pq2.offer(pq1.poll());
+                else
+                    pq1.offer(pq2.poll());
             }
             
             if(pq1.size()==pq2.size()){
