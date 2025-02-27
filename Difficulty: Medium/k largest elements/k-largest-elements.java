@@ -9,10 +9,16 @@ import java.util.HashMap;
 class Solution {
     public ArrayList<Integer> kLargest(int[] arr, int k) {
         // Your code here
-        ArrayList<Integer> a=new ArrayList<>();
-        for(int i: arr) a.add(i);
-        Collections.sort(a,(i,j)->j-i);
-        ArrayList<Integer> result=new ArrayList<>(a.subList(0,k));
+        PriorityQueue<Integer> pq=new PriorityQueue<>();
+        for(int i: arr){
+            pq.offer(i);
+            if(pq.size()>k)
+                pq.poll();
+        }
+        
+        ArrayList<Integer> result=new ArrayList<>();
+        while(!pq.isEmpty())    result.add(pq.poll());
+        Collections.reverse(result);
         return result;
     }
 }
