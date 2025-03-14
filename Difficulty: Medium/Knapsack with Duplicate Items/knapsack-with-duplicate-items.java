@@ -40,11 +40,11 @@ class Solution {
     }
     
     static int find(int[] val,int[] wt,int index,int W,int[][] dp){
-        // if(index==0){
-        //     return W%wt[0]==0?val[0]:0;
-        // }
+        if(index==0){
+            return (W/wt[0])*val[0];
+        }
     
-        if(index==-1)   return 0;
+        // if(index==-1)   return 0;
         
         if(dp[index][W]!=-1)
             return dp[index][W];
