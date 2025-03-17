@@ -28,29 +28,34 @@ class GFG {
 // } Driver Code Ends
 
 
-// User function Template for Java
-
 class Solution {
 
-    static Boolean isSubsetSum(int arr[], int target) {
+    static Boolean isSubsetSum(int arr[], int sum) {
         // code here
         int n=arr.length;
-        int[][] dp=new int[n][target+1];
+        int[][] dp=new int[n][sum+1];
         for(int[] i: dp)    Arrays.fill(i,-1);
         
-        return find(arr,n-1,target,dp)==1;
+        return solve(arr,n-1,sum,dp)==1;
     }
     
-    static int find(int[] arr,int index,int target,int[][] dp){
-        if(target==0)   return 1;
-        if(target<0)    return 0;
-        if(index<0) return 0;
+    static int solve(int[] arr,int index,int sum,int[][] dp){
+        if(sum==0)  return 1;
         
-        if(dp[index][target]!=-1)   return dp[index][target];
+        if(index==0)
+            return sum==arr[0]?1:0;
         
-        int pick = find(arr,index-1,target-arr[index],dp);
-        int notpick = find(arr,index-1,target,dp);
         
-        return dp[index][target]=pick|notpick;
+        
+        if(dp[index][sum]!=-1)
+            return dp[index][sum];
+        
+        int notpick = solve(arr,index-1,sum,dp);
+        int pick = 0;
+        
+        if(sum>=arr[index])
+            pick = solve(arr,index-1,sum-arr[index],dp);
+        
+        return dp[index][sum]=pick | notpick;
     }
 }
