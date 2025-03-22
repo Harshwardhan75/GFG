@@ -27,18 +27,32 @@ class Geeks {
 class Solution {
     static int lis(int arr[]) {
         // code here
+        ArrayList<Integer> lis=new ArrayList<>();
         int n=arr.length;
-        int[] dp=new int[n];
-        dp[n-1]=1;
         
-        for(int i=n-2;i>=0;i--){
-            dp[i]=1;
-            for(int j=i+1;j<n;j++){
-                if(arr[j]>arr[i])
-                    dp[i]=Math.max(dp[i],dp[j]+1);
-            }
+        for(int i=0;i<n;i++){
+            int f=BS(lis,arr[i]);
+            if(f>=lis.size())
+                lis.add(arr[i]);
+            else
+                lis.set(f,arr[i]);
         }
         
-        return Arrays.stream(dp).max().orElseThrow();
+        return lis.size();
+    }
+    
+    static int BS(ArrayList<Integer> arr,int x){
+        int low=0,high=arr.size()-1;
+        
+        while(low<=high){
+            int mid=(low+high)>>1;
+            
+            if(arr.get(mid)<x)
+                low=mid+1;
+            else
+                high=mid-1;
+        }
+        
+        return low;
     }
 }
