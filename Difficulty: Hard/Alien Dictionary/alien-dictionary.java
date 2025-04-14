@@ -21,7 +21,7 @@ class Solution {
             char[] c=find(words[i],words[i+1]);
             if (c.length == 0) {
                 if (words[i].length() > words[i + 1].length()) {
-                    return ""; // Invalid: prefix issue
+                    return ""; 
                 }
                 continue;
             }
