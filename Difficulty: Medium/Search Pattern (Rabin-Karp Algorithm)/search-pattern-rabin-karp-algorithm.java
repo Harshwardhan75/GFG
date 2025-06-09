@@ -1,60 +1,49 @@
 class Solution {
+    
+    int hash(char c){
+        return c-'a'+1;
+    }
+    
     ArrayList<Integer> search(String pat, String txt) {
         // Code here
-        int[] lps=findLPS(pat);
-        int first = 0;
-        int second = 0;
+        int patValue=0;
+        int txtValue=0;
+        for(int i=0;i<pat.length();i++){
+            patValue+=hash(pat.charAt(i));
+            txtValue+=hash(txt.charAt(i));
+        }
         
-        int n=pat.length();
-        int m=txt.length();
         ArrayList<Integer> result=new ArrayList<>();
         
-        while(second<m){
-            if(pat.charAt(first)==txt.charAt(second)){
-                first++;
-                second++;
-            }
-            else{
-                if(first==0){
-                    second++;
-                }
-                else{
-                    first=lps[first-1];
-                }
-            }
+        if(patValue==txtValue){
+            if(check(pat,txt,0))
+                result.add(0+1);
+        }
+        
+        int right = pat.length();
+        int left=0;
+        
+        while(right<txt.length()){
+            txtValue+=hash(txt.charAt(right));
+            txtValue-=hash(txt.charAt(left));
             
-            if(first==n){
-                result.add(second-first+1);
-                first=lps[first-1];
+            left++;
+            right++;
+            
+            if(patValue==txtValue){
+                if(check(pat,txt,left))
+                    result.add(left+1);
             }
         }
         
         return result;
     }
     
-    int[] findLPS(String pattern){
-        int n=pattern.length();
-        int[] lps=new int[n];
-        
-        int pre=0,suf=1;
-        
-        while(suf<n){
-            if(pattern.charAt(pre)==pattern.charAt(suf)){
-                lps[suf]=pre+1;
-                pre++;
-                suf++;
-            }
-            else{
-                if(pre==0){
-                    lps[suf]=0;
-                    suf++;
-                }
-                else{
-                    pre=lps[pre-1];
-                }
-            }
+    boolean check(String a,String b,int index){
+        for(int i=0;i<a.length();i++){
+            if(a.charAt(i)!=b.charAt(index+i))
+                return false;
         }
-        
-        return lps;
+        return true;
     }
 }
