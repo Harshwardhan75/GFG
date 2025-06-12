@@ -1,0 +1,22 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/koko-eating-bananas/1">Koko Eating Bananas</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p data-start="120" data-end="259"><span style="font-size: 14pt;">Koko is given an array<strong> <code data-start="87" data-end="94">arr[]</code></strong>, where each element represents a pile of bananas. She has exactly <strong><code data-start="161" data-end="164">k</code></strong> hours to eat all the bananas.</span></p>
+<p data-start="261" data-end="337"><span style="font-size: 14pt;">Each hour, Koko can choose <strong data-start="288" data-end="300">one pile</strong> and eat up to<strong> <code data-start="315" data-end="318">s</code> </strong>bananas from it.</span></p>
+<ul data-start="338" data-end="502">
+<li data-start="338" data-end="413"><span style="font-size: 14pt;"> </span>
+<p data-start="340" data-end="413"><span style="font-size: 14pt;">If the pile has <strong data-start="356" data-end="368">at least</strong> <code data-start="369" data-end="372"><strong>s</strong></code> bananas, she eats exactly <strong><code data-start="399" data-end="402">s</code></strong> bananas.</span></p>
+<span style="font-size: 14pt;"> </span></li>
+<li data-start="414" data-end="502"><span style="font-size: 14pt;"> </span>
+<p data-start="416" data-end="502"><span style="font-size: 14pt;">If the pile has <strong data-start="432" data-end="441">fewer</strong> than <strong><code data-start="447" data-end="450">s</code></strong> bananas, she eats the <strong data-start="473" data-end="488">entire pile</strong> in that hour.</span></p>
+<span style="font-size: 14pt;"> </span></li>
+</ul>
+<p data-start="504" data-end="549"><span style="font-size: 14pt;">Koko can only eat from <strong data-start="527" data-end="548">one pile per hour</strong>.</span></p>
+<p><span style="font-size: 14pt;"> </span></p>
+<p data-start="551" data-end="681"><span style="font-size: 14pt;">Your task is to find the <strong data-start="576" data-end="600">minimum value of <code data-start="595" data-end="598">s</code></strong> (bananas per hour) such that Koko can finish <strong data-start="646" data-end="653">all</strong> the piles within <strong><code data-start="671" data-end="674">k</code> </strong>hours.</span></p>
+<p><strong><span style="font-size: 18px;">Examples:</span></strong></p>
+<pre><strong><span style="font-size: 18px;">Input:</span><span style="font-size: 18px;"> </span></strong><span style="font-size: 18px;"><span style="font-size: 14pt;">arr[]</span><span style="font-size: 14pt;"> = [3, 6, 7, 11] , k = 8</span>
+<strong><span style="font-size: 18px;">Output:</span> </strong></span><span style="font-size: 18px;">4<br></span><strong><span style="font-size: 14pt;">Explanation: </span></strong><span style="font-size: 18.6667px;">Koko eats at least 4 bananas per hour to finish all piles within 8 hours, as she can consume each pile in 1 + 2 + 2 + 3 = 8 hours.</span></pre>
+<pre><span style="font-size: 18px;"><strong>Input: </strong>arr[] = [30, 11, 23, 4, 20], k = 5
+<strong>Output: </strong></span><span style="font-size: 18px;"><span style="font-size: 18px;">30<br></span><strong style="font-size: 18px;">Explanation:</strong><span style="font-size: 18px;"> With 30 bananas per hour, Koko completes each pile in 1 hour, totaling 5 hours, which matches k = 5.</span></span></pre>
+<pre><span style="font-size: 18px;"><span style="font-size: 18px;"><strong>Input:</strong> arr[] = [5, 10, 15, 20], k = 7
+<strong>Output:</strong> 10
+<strong>Explanation:</strong> At 10 bananas per hour, Koko finishes in 7 hours, just within the k = 7 limit.</span></span></pre>
+<p><strong><span style="font-size: 18px;">Constraint:</span></strong><br><span style="font-size: 18px;">1 &lt;= arr.size() &lt;= 10<sup>5&nbsp;</sup><br>1 &lt;= arr[i] &lt;= 10</span><sup><span style="font-size: 18px;">6</span></sup><br><span style="font-size: 18px;">arr.size() &lt;= k &lt;= 10<sup>6</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Bloomberg</code>&nbsp;<code>Amazon</code>&nbsp;<code>Microsoft</code>&nbsp;<code>Walmart</code>&nbsp;<code>Adobe</code>&nbsp;<code>Arcesium</code>&nbsp;<code>Uber</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Binary Search</code>&nbsp;<code>Arrays</code>&nbsp;
