@@ -1,0 +1,12 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/combination-sum-ii-1664263832/1?page=1&category=Backtracking&sortBy=submissions">Combination Sum II</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array&nbsp;<strong>arr[]</strong>&nbsp;and a&nbsp;<strong>target</strong>, your task is to find all&nbsp;<strong>unique&nbsp;</strong>combinations in the array where the sum is equal to target.&nbsp;</span><span style="font-size: 18px;">Each number in arr[] may only be used <strong>once </strong>in the combination.</span></p>
+<p><span style="font-size: 18px;">You can return your answer in&nbsp;<strong>any&nbsp;</strong>order.</span></p>
+<p><strong><span style="font-size: 18px;">Examples:</span></strong></p>
+<pre><span style="font-size: 18px;"><strong>Input:</strong> </span><span style="font-size: 18px;">arr[] = [1, 2, 3, 3, 5], target =7</span>
+<strong><span style="font-size: 18px;">Output: </span></strong><span style="font-size: 18px;">[[1, 3, 3], [2, 5]]</span>
+<strong><span style="font-size: 18px;">Explanation: </span></strong><span style="font-size: 18px;">Total number of possible combinations are 2.</span></pre>
+<pre><span style="font-size: 18px;"><strong><span style="font-size: 18px;">Input:</span> </strong></span><span style="font-size: 18px;">arr[] = [5, 10, 15, 20, 25, 30], target = 30</span>
+<strong><span style="font-size: 18px;">Output: </span></strong><span style="font-size: 18px;">[[5, 10, 15], [5, 25], [10, 20], [30]]</span>
+<strong><span style="font-size: 18px;">Explanation: </span></strong><span style="font-size: 18px;">Total number of possible combinations are 4.<br></span></pre>
+<pre><strong><span style="font-size: 18px;">Input: </span></strong><span style="font-size: 18px;">arr[] = [6, 5, 7], target = 8
+<strong>Output: </strong>[]<br><strong>Explanation:</strong> There are no possible combinantions such that target sum is 8.</span></pre>
+<p><strong><span style="font-size: 18px;">Constraints:</span></strong><br><span style="font-size: 18px;">1 &lt;= arr.size() &lt;= 100<br>1 &lt;= arr[i] &lt;= 50<br>1 &lt;= target &lt;= 30</span></p></div><br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Arrays</code>&nbsp;<code>Recursion</code>&nbsp;<code>Data Structures</code>&nbsp;<code>Algorithms</code>&nbsp;<code>Backtracking</code>&nbsp;
