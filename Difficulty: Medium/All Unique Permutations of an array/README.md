@@ -1,0 +1,10 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/all-unique-permutations-of-an-array/1?page=1&category=Backtracking&sortBy=submissions">All Unique Permutations of an array</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given an array&nbsp;<strong>arr[]&nbsp;</strong>of length&nbsp;<strong>n.&nbsp;</strong>Find all possible&nbsp;<strong>distinct permutations&nbsp;</strong>of the array in&nbsp;<strong>sorted order</strong>. A sequence&nbsp;<strong>A&nbsp;</strong>is greater than sequence&nbsp;<strong>B</strong>&nbsp;if there is an index&nbsp;<strong>i&nbsp;</strong>for which&nbsp;<strong>A<sub>j</sub>&nbsp;= B<sub>j</sub></strong>&nbsp;for all&nbsp;<strong>j&lt;i&nbsp;</strong>and&nbsp;</span><strong><span style="font-size: 18px;">A</span><sub>i</sub><span style="font-size: 18px;">&nbsp;&gt; B</span><sub>i</sub></strong>.</p>
+<p><span style="font-size: 18px;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 18px;"><strong>Input</strong>: arr[] = [1, 3, 3]
+<strong>Output</strong>: [[1, 3, 3], [3, 1, 3], [3, 3, 1]]
+<strong>Explanation</strong>: These are the only possible distinct permutations for the given array.</span>
+</pre>
+<pre><span style="font-size: 18px;"><strong>Input</strong>: arr[] = [4, 5]
+<strong>Output</strong>: [[4, 5], [5, 4]]<br><strong>Explanation:</strong> These are the only possible distinct permutations for the given array.
+</span></pre>
+<p><span style="font-size: 18px;"><strong>Constraints:</strong></span><br><span style="font-size: 18px;">1 ≤ n ≤ 9</span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Google</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Recursion</code>&nbsp;<code>Backtracking</code>&nbsp;<code>Algorithms</code>&nbsp;
