@@ -1,42 +1,44 @@
 class Solution {
     public int minCost(int[] heights, int[] cost) {
-        int low = Integer.MAX_VALUE, high = Integer.MIN_VALUE;
-
-        // Determine search range
-        for (int h : heights) {
-            low = Math.min(low, h);
-            high = Math.max(high, h);
+        // code here
+        int low=1;
+        int high = Arrays.stream(heights).max().orElseThrow();
+        int max = high;
+        
+        while(low<=high){
+            int mid=(low+high)>>1;
+            int left=mid-1;
+            int right=mid+1;
+            
+            int value_mid=totalCost(heights,cost,mid,max);
+            int value_left=totalCost(heights,cost,left,max);
+            int value_right=totalCost(heights,cost,right,max);
+            
+            if(value_left>=value_mid && value_mid<value_right)
+                return value_mid;
+            
+            if(value_left<value_right)
+                high=mid-1;
+            else
+                low=mid+1;
         }
-
-        // Ternary search to minimize cost
-        while (high - low > 2) {
-            int mid1 = low + (high - low) / 3;
-            int mid2 = high - (high - low) / 3;
-
-            long cost1 = totalCost(heights, cost, mid1);
-            long cost2 = totalCost(heights, cost, mid2);
-
-            if (cost1 < cost2) {
-                high = mid2;
-            } else {
-                low = mid1;
-            }
-        }
-
-        // Check final possible values
-        long answer = Long.MAX_VALUE;
-        for (int h = low; h <= high; h++) {
-            answer = Math.min(answer, totalCost(heights, cost, h));
-        }
-
-        return (int) answer;
+        
+        return max+1;
     }
-
-    private long totalCost(int[] heights, int[] cost, int target) {
-        long total = 0;
-        for (int i = 0; i < heights.length; i++) {
-            total += 1L * Math.abs(heights[i] - target) * cost[i];
+    
+    int totalCost(int[] height,int[] cost,int currHeight,int max){
+        if(currHeight<0 || currHeight>max)
+            return Integer.MAX_VALUE;
+        
+        int n=height.length;
+        
+        int totalCost=0;
+        
+        for(int i=0;i<n;i++){
+            int diff=Math.abs(height[i]-currHeight);
+            totalCost+=(diff*cost[i]);
         }
-        return total;
+        
+        return totalCost;
     }
 }
