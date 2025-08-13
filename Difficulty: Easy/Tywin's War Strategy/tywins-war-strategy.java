@@ -1,25 +1,27 @@
 class Solution {
     public int minSoldiers(int[] arr, int k) {
         // code here
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)->a[1]-b[1]);
-        int n= arr.length;
+        int[] freq = new int[k];
+        for(int i: arr) freq[i%k]++;
         
-        for(int i=0;i<n;i++){
-            int mod = arr[i]%k;
-            mod = (k - mod)%k;
-            pq.offer(new int[]{arr[i],mod});
-        }
-        
-        int val = 0;
+        // System.out.println(Arrays.toString(freq));
+        int current = freq[0];
+        int n = arr.length;
+        int needed = (n+1)/2;
         int sum = 0;
         
-        while(!pq.isEmpty()){
-            int[] node = pq.poll();
-            sum+=node[1];
-            val++;
-            
-            if(val>=(n+1)/2)
+        for(int i=k-1;i>0;i--){
+            int val = current+freq[i];
+            if(val<=needed){
+                sum = sum + (freq[i]*(k-i));
+                current+=freq[i];
+            }
+            else{
+                int req = Math.max(0,needed - current);
+                sum = sum + (req*(k-i));
+                current += req;
                 return sum;
+            }
         }
         
         return sum;
