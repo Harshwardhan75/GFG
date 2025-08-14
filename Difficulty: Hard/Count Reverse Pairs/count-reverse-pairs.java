@@ -1,33 +1,44 @@
 class Solution {
     public int countRevPairs(int[] arr) {
         // code here
-        return mergeSort(arr,0,arr.length-1);
+        return  mergeSort(arr,0,arr.length-1);
     }
     
     int mergeSort(int[] arr,int low,int high){
-        if(low<high){
-            int mid=(low+high)>>1;
-            
-            int count = 0;
-            
-            count+=mergeSort(arr,low,mid);
-            count+=mergeSort(arr,mid+1,high);
-            count += count(arr,low,mid,high);
-            
-            merge(arr,low,mid,high);
-            
-            return count;
-        }
+        if(low>=high)
+            return 0;
         
-        return 0;
+        int count = 0;
+        int mid = (low+high)>>1;
+        count+=mergeSort(arr,low,mid);
+        count+=mergeSort(arr,mid+1,high);
+        count+=find(arr,low,mid,high);
+        merge(arr,low,mid,high);
+        
+        return count;
     }
     
-    void merge(int[] arr,int low,int mid,int high){
-        ArrayList<Integer> temp = new ArrayList<>();
-        int i=low,j=mid+1;
+    int find(int[] arr,int low,int mid,int high){
+        int i = low, j = mid + 1;
         
-        while(i<=mid && j<=high){
-            if(arr[i]<arr[j]){
+        int count = 0;
+        
+        for(i=i;i<=mid;i++){
+            while(j<=high && arr[i]>arr[j]*2)
+                j++;
+            
+            count = count + j-1-mid;
+        }
+        
+        return count;
+    }
+    
+    void merge(int[] arr,int low,int mid,int right){
+        int i = low, j = mid+1;
+        ArrayList<Integer> temp = new ArrayList<>();
+        
+        while(i<=mid && j<=right){
+            if(arr[i]<=arr[j]){
                 temp.add(arr[i]);
                 i++;
             }
@@ -37,25 +48,11 @@ class Solution {
             }
         }
         
-        while(i<=mid)  temp.add(arr[i++]);
-        while(j<=high)  temp.add(arr[j++]);
+        while(i<=mid)   temp.add(arr[i++]);
+        while(j<=right)   temp.add(arr[j++]);
         
-        for(i=low;i<=high;i++){
-            arr[i]=temp.get(i-low);
+        for(i=0;i<temp.size();i++){
+            arr[low+i]=temp.get(i);
         }
-    }
-    
-    int count(int[] arr,int low,int mid,int high){
-        int count = 0;
-        int right = mid+1;
-        
-        for(int i=low;i<=mid;i++){
-            while(right<=high && arr[i]>arr[right]*2)
-                right++;
-            
-            count+=(right-(mid+1));
-        }
-        
-        return count;
     }
 }
