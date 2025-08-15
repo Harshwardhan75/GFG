@@ -1,0 +1,11 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/wave-array-1587115621/1?page=1&sprint=ca8ae412173dbd8346c26a0295d098fd&sortBy=submissions">Wave Array</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given an <strong>s</strong><strong>orted</strong> array <strong>arr[]</strong> of integers. Sort the array into a <strong>wave-like</strong> array(In Place). In other words, <strong>arrange the elements</strong> into a sequence such that arr[1] &gt;= arr[2] &lt;= arr[3] &gt;= arr[4] &lt;= arr[5] ..... and so on. If there are multiple solutions, find the <strong>lexicographically smallest</strong> one.</span></p>
+<p><span style="font-size: 14pt;"><strong>Note: </strong>The given array is sorted in ascending order, and modify the given array in-place without returning a new array.</span></p>
+<p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr[] = [1, 2, 3, 4, 5]
+<strong>Output: </strong>[2, 1, 4, 3, 5]<strong>
+Explanation: </strong>Array elements after sorting it in the waveform are 2, 1, 4, 3, 5.</span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr[] = [2, 4, 7, 8, 9, 10]
+<strong>Output: </strong>[4, 2, 8, 7, 10, 9]<strong>
+Explanation: </strong>Array elements after sorting it in the waveform are 4, 2, 8, 7, 10, 9.<br></span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input:</strong> arr[] = [1]<br><strong>Output:</strong> [1]</span></pre>
+<p><span style="font-size: 14pt;"><strong>Constraints:</strong><br>1 ≤ arr.size ≤ 10<sup>6</sup><br>0 ≤ arr[i] ≤10<sup>9</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Paytm</code>&nbsp;<code>Flipkart</code>&nbsp;<code>Amazon</code>&nbsp;<code>Microsoft</code>&nbsp;<code>FactSet</code>&nbsp;<code>Goldman Sachs</code>&nbsp;<code>Google</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Arrays</code>&nbsp;<code>Sorting</code>&nbsp;<code>Data Structures</code>&nbsp;<code>Algorithms</code>&nbsp;
