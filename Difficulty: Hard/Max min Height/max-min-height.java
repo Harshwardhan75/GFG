@@ -1,46 +1,50 @@
 class Solution {
     public int maxMinHeight(int[] arr, int k, int w) {
         // code here
-        int low = 1,high = (int) 1e8;
+        int low = Integer.MAX_VALUE;
+        int high = Integer.MIN_VALUE;
+        int n = arr.length;
+        
+        for(int i=0;i<n;i++){
+            low=Math.min(low,arr[i]);
+            high = Math.max(high,arr[i]+k);
+        }
         
         while(low<=high){
-            int mid=(low+high)>>1;
+            int mid = (low+high)>>1;
             
-            if(isPossible(arr,mid,k,w)){
-                low=mid+1;
-            }
-            else{
+            int reqQ=find(arr,mid,w);
+            
+            if(reqQ<=k)
+                low = mid+1;
+            else
                 high = mid-1;
-            }
         }
         
         return high;
     }
     
-    static boolean isPossible(int[] arr,int mid,int k,int w){
-        int n=arr.length;
-        int[] water=new int[n+1];
-        int used = 0, curr = 0;
-
+    int find(int[] arr,int mid,int k){
+        int n = arr.length;
+        int[] water = new int[n+k+1];
+        int prefix = 0;
+        int used = 0;
+        
         for(int i=0;i<n;i++){
-            curr+=water[i];
+            prefix+=water[i];
+            int curr = prefix+arr[i];
             
-            int height = arr[i]+curr;
-            
-            if(height<mid){
-                int need=mid-height;
-                used+=need;
-                if(used>k)
-                    return false;
+            if(curr<mid){
+                int req = mid-curr;
                 
-                curr+=need;
+                water[i]+=req;
+                prefix+=req;
+                water[i+k]-=req;
                 
-                if(i+w<water.length)
-                    water[i+w]-=need;
+                used+=req;
             }
         }
         
-        return true;
+        return used;
     }
-    
 }
