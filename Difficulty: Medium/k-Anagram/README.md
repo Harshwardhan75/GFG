@@ -1,0 +1,13 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/check-if-two-strings-are-k-anagrams-or-not/1?page=4&category=Strings&sortBy=submissions">k-Anagram</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Two strings are called&nbsp;<strong>k-anagrams</strong>&nbsp;if<strong>&nbsp;</strong>both of the below<strong>&nbsp;</strong>conditions are true.<br>1. Both have same<strong>&nbsp;</strong>number of characters.<br>2. Two strings can become anagram by changing<strong>&nbsp;</strong>at most&nbsp;<strong>k</strong>&nbsp;characters in a string.</span></p>
+<p><span style="font-size: 18px;">Given two strings of lowercase alphabets and an integer value <strong>k</strong>,&nbsp;</span><span style="font-size: 18px;">the task is to find if two strings are&nbsp;<strong>k-anagrams</strong>&nbsp;of each other or not.</span></p>
+<p><span style="font-size: 20px;"><strong>Example:</strong></span></p>
+<pre><span style="font-size: 18px;"><strong>Input: </strong>s1 = "fodr</span><span style="font-size: 18px;">", s2 = "gork", k = 2</span>
+<span style="font-size: 18px;"><strong>Output: </strong>true</span>
+<span style="font-size: 18px;"><strong>Explanation: </strong>We can change 'f' -&gt; 'g' and 'd' -&gt; 'k' in <strong>s1</strong>.</span></pre>
+<pre><span style="font-size: 18px;"><strong>Input: </strong>s1 = "geeks</span><span style="font-size: 18px;">", s2 = "eggkf", k = 1</span>
+<span style="font-size: 18px;"><strong>Output: </strong>false</span>
+<span style="font-size: 18px;"><strong>Explanation: </strong></span><span style="font-size: 18px;">We can update or modify only 1 value but there is a need of modifying 2 characters i.e. 'g' and 'f' in <strong>s2</strong>.</span></pre>
+<pre><span style="font-size: 18px;"><strong>Input: </strong>s1 = "adb</span><span style="font-size: 18px;">", s2 = "fdab", k = 2</span>
+<span style="font-size: 18px;"><strong>Output: </strong>false</span>
+<span style="font-size: 18px;"><strong>Explanation: </strong>Both the strings have different numbers of characters.</span></pre>
+<p><span style="font-size: 18px;"><strong>Constraints:</strong><br>1 ≤ s1.size(), s2.size() ≤ 10<sup>5</sup><br>1 ≤ k ≤ 10<sup>5</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Accolite</code>&nbsp;<code>Amazon</code>&nbsp;<code>Microsoft</code>&nbsp;<code>Google</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Hash</code>&nbsp;<code>Strings</code>&nbsp;<code>Data Structures</code>&nbsp;
