@@ -24,6 +24,7 @@ class Solution {
         }
         
         int query(int index,int low,int high,int value){
+                
             if(low==high){
                 return seg[index][1];
             }
