@@ -1,0 +1,14 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1">Allocate Minimum Pages</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span class="cf0" style="font-size: 14pt;">Given an array <strong>arr[] </strong>of integers, where each element <strong>arr[i]</strong> represents the number of pages in the i-th book. You also have an integer <strong>k</strong> representing the number of students. The task is to allocate books to each student such that:</span></p>
+<ul>
+<li><span class="cf0" style="font-size: 14pt;">Each student receives atleast one book.</span></li>
+<li><span class="cf0" style="font-size: 14pt;">Each student is assigned a contiguous sequence of books.</span></li>
+<li><span class="cf0" style="font-size: 14pt;">No book is assigned to more than one student.</span></li>
+</ul>
+<p class="pf0"><span class="cf0" style="font-size: 14pt;">The objective is to <strong>minimize the maximum number of pages </strong>assigned to any student. In other words, out of all possible allocations, find the arrangement where the student who receives the most pages still has the <strong>smallest possible maximum</strong>.</span></p>
+<p class="pf0"><span class="cf0" style="font-size: 14pt;"><strong>Note:</strong>&nbsp;</span><span style="font-size: 18.6667px;">If it is not possible to allocate books to all students, return <strong>-1</strong>.</span></p>
+<p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>arr[] = [12, 34, 67, 90], k = 2
+<strong>Output: </strong>113
+<strong>Explanation: </strong>Allocation can be done in following ways:<br>=&gt; [12] and [34, 67, 90] Maximum Pages = 191<br>=&gt; [12, 34] and [67, 90] Maximum Pages = 157<br>=&gt; [12, 34, 67] and [90] Maximum Pages = 113.<br>The third combination has the minimum pages assigned to a student which is 113.</span></pre>
+<pre><span style="font-size: 14pt;"><span class="cf0"><strong>Input:</strong> arr[] = [15, 17, 20], k = 5<br></span><span class="cf0"><strong>Output: </strong>-1<br></span><span class="cf0"><strong>Explanation: </strong></span>Since there are more students than total books, it's impossible to allocate a book to each student.</span></pre>
+<p><span style="font-size: 14pt;"><strong>Constraints:</strong><br>1 ≤ arr.size() ≤ 10<sup>6</sup><br>1 ≤ arr[i], k ≤ 10<sup>3</sup></span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Infosys</code>&nbsp;<code>Amazon</code>&nbsp;<code>Microsoft</code>&nbsp;<code>Google</code>&nbsp;<code>Codenation</code>&nbsp;<code>Uber</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Searching</code>&nbsp;<code>Divide and Conquer</code>&nbsp;<code>Algorithms</code>&nbsp;
