@@ -1,66 +1,42 @@
-//{ Driver Code Starts
-import java.io.*;
-import java.util.*;
-
-class GFG {
-    public static void main(String args[]) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter out = new PrintWriter(System.out);
-        int t = Integer.parseInt(in.readLine());
-        while (t-- > 0) {
-            String s = in.readLine();
-
-            Solution ob = new Solution();
-            out.println(ob.decodeString(s));
-
-            out.println("~");
-        }
-        out.close();
-    }
-}
-// } Driver Code Ends
-
-
-
 class Solution {
-    
     static String decodeString(String s) {
         // code here
-        if(s.equals("1[b]"))
-            return "b";
-            
-        Stack<Character> st=new Stack<>();
-        int n=s.length();
-        char[] c=s.toCharArray();
+        Stack<Character> st = new Stack<>();
+        int n = s.length();
         
-        for(char x: c){
-            if(x!=']')
-                st.push(x);
+        for(int i=0;i<n;i++){
+            char c = s.charAt(i);
+            
+            if(c!=']'){
+                st.push(c);
+            }
             else{
-                StringBuilder temp=new StringBuilder();
+                StringBuilder sb = new StringBuilder();
                 while(!st.isEmpty() && st.peek()!='['){
-                    temp.append(st.peek());
+                    sb.append(st.pop());
+                }
+                
+                if(!st.isEmpty()){
                     st.pop();
                 }
-                st.pop();
                 
-                StringBuilder value=new StringBuilder();
+                StringBuilder value = new StringBuilder();
+                
                 while(!st.isEmpty() && Character.isDigit(st.peek())){
                     value.append(st.pop());
                 }
-                value=value.reverse();
-                int val = value.length() > 0 ? Integer.parseInt(value.toString()) : 0;
-                temp.reverse();
                 
-                for(int i=1;i<=val;i++){
-                    for(char y: temp.toString().toCharArray()){
-                        st.push(y);
-                    }
+                value.reverse();
+                sb.reverse();
+                int val = Integer.parseInt(value.toString());
+                for(int x=0;x<val;x++){
+                    for(int j = 0;j<sb.length();j++)
+                        st.push(sb.charAt(j));
                 }
             }
         }
         
-        StringBuilder result=new StringBuilder();
+        StringBuilder result = new StringBuilder();
         while(!st.isEmpty())
             result.append(st.pop());
         return result.reverse().toString();
