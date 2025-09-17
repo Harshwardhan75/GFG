@@ -14,27 +14,18 @@ class Node {
 class Solution {
     public Node reverse(Node head) {
         // code here
-        Node last = head;
-        int size = 1;
+        if(head==null)
+            return head;
         
-        while(last.next!=null){
-            last = last.next;
-            size++;
-        }
+        Node newHead = reverse(head.next);
         
-        Node first = head;
+        Node temp = head.next;
+        head.next = head.prev;
+        head.prev = temp;
         
-        size/=2;
+        if(head.prev==null)
+            return head;
         
-        while(size-->0){
-            int temp = last.data;
-            last.data = first.data;
-            first.data = temp;
-            
-            first = first.next;
-            last = last.prev;
-        }
-        
-        return head;
+        return newHead;
     }
 }
