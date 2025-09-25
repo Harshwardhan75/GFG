@@ -1,37 +1,35 @@
 /*You are required to complete this method */
 class Solution {
+    Integer[][][] dp;
     public boolean isKPartitionPossible(int[] arr, int k) {
         // Your code here
-        int[] sum=new int[k];
-        return solve(arr,sum,0,new HashMap<>());
+        int sum = Arrays.stream(arr).sum();
+        if(sum%k!=0)
+            return false;
+        dp = new Integer[1<<arr.length][sum+1][k+1];
+        
+        return solve(arr,0,sum/k,0,k)==1;
     }
     
-    boolean solve(int[] arr,int[] sum,int index,Map<String,Boolean> dp){
-        if(index>=arr.length){
-            int value = sum[0];
-            for(int i: sum)
-                if(i!=value)
-                    return false;
-                
-            return true;
-        }
-        int[] copy = Arrays.copyOf(sum, sum.length);
-Arrays.sort(copy);
-String key = Arrays.toString(copy) + " " + index;
+    int solve(int[] arr,int visited,int curr,int total,int cap){
+        if(cap == 0)
+            return 1;
         
-        // String key=Arrays.toString(sum)+" "+Integer.toString(index);
-        if(dp.containsKey(key))
-            return dp.get(key);
+        int take = 0;
         
-        for(int i=0;i<sum.length;i++){
-            sum[i]+=arr[index];
-            if(solve(arr,sum,index+1,dp)){
-                dp.put(key,true);
-                return true;
+        if(dp[visited][curr][cap]!=null)
+            return dp[visited][curr][cap];
+        
+        if(curr==total)
+            return solve(arr,visited,curr,0,cap-1);
+        
+        for(int i=0;i<arr.length;i++){
+            if((visited & (1<<i))==0){
+                if(arr[i]+total<=curr)
+                    take |= solve(arr,visited | 1<<i,curr,total+arr[i],cap);
             }
-            sum[i]-=arr[index];
         }
-        dp.put(key,false);
-        return false;
+        
+        return dp[visited][curr][cap] = take;
     }
 }
