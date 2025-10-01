@@ -1,44 +1,41 @@
-// User function Template for Java
-
 class Solution {
-    public static ArrayList<ArrayList<Integer>> uniquePerms(int[] nums) {
+    public static ArrayList<ArrayList<Integer>> uniquePerms(int[] arr) {
         // code here
-        int n=nums.length;
-        boolean[] visited=new boolean[n];
-        Arrays.sort(nums);
-        
-        Set<ArrayList<Integer>> result=new HashSet<>();
-        solve(result,new ArrayList<>(),nums,visited);
-        ArrayList<ArrayList<Integer>> val = new ArrayList<>(result);
-        Collections.sort(val,(a,b)->{
-            for(int i=0;i<n;i++){
-                if(a.get(i)==b.get(i))
-                    continue;
-                
-                return a.get(i)-b.get(i);
+        Set<ArrayList<Integer>> set = new HashSet<>();
+        int n = arr.length;
+        solve(set,arr,new boolean[n],new ArrayList<>());
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>(set);
+        Collections.sort(result,(a,b)->{
+            int nn = a.size();
+            
+            for(int i=0;i<nn;i++){
+                if(a.get(i)<b.get(i))
+                    return -1;
+                else
+                if(a.get(i)>b.get(i))
+                    return 1;
             }
             
             return 0;
         });
-        return val;
+        
+        return result;
     }
     
-    static void solve(Set<ArrayList<Integer>> result,ArrayList<Integer> temp,
-                int[] nums,boolean[] visited){
-        
-        int n=nums.length;
-        if(temp.size()>=n)    {
-            result.add(new ArrayList<>(temp));
+    static void solve(Set<ArrayList<Integer>> set,int[] arr,
+                    boolean[] visited,ArrayList<Integer> temp){
+        if(temp.size()==arr.length){
+            set.add(new ArrayList<>(temp));
             return;
-        }
+        }          
         
-        for(int i=0;i<n;i++){
+        for(int i=0;i<arr.length;i++){
             if(!visited[i]){
-                temp.add(nums[i]);
-                visited[i]=true;
-                solve(result,temp,nums,visited);
-                visited[i]=false;
+                visited[i] = true;
+                temp.add(arr[i]);
+                solve(set,arr,visited,temp);
                 temp.remove(temp.size()-1);
+                visited[i] = false;
             }
         }
     }
