@@ -26,9 +26,6 @@ class Solution {
     Node solve(int[] pre,int preStart,int preEnd,int[] post,int postStart,int postEnd){
         if(preStart>preEnd || postStart<postEnd)
             return null;
-        
-        if(pre[preStart]!=post[postStart])
-            return null;
             
         Node newNode = new Node(pre[preStart]);
         
