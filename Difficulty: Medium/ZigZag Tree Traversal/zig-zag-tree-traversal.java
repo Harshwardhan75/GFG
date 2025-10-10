@@ -1,5 +1,5 @@
-/*class Node
-{
+/*
+class Node {
     int data;
     Node left,right;
     Node(int d)
@@ -7,36 +7,34 @@
         data=d;
         left=right=null;
     }
-}*/
+}
+*/
 
-class GFG {
-    // Function to store the zig zag order traversal of tree in a list.
+class Solution {
     ArrayList<Integer> zigZagTraversal(Node root) {
-        // Add your code here.
-        ArrayList<Integer> result=new ArrayList<>();
-        Queue<Node> que=new LinkedList<>();
+        // code here
+        ArrayList<Integer> result = new ArrayList<>();
+        Queue<Node> que = new LinkedList<>();
         que.offer(root);
-        boolean reverse=false;
         
+        boolean flag = true;
         while(!que.isEmpty()){
-            int size=que.size();
-            ArrayList<Integer> arr=new ArrayList<>();
+            int size = que.size();
+            ArrayList<Integer> temp = new ArrayList<>();
             
             for(int i=1;i<=size;i++){
-                Node temp=que.poll();
-                arr.add(temp.data);
+                Node node = que.poll();
+                temp.add(node.data);
                 
-                if(temp.left!=null) que.offer(temp.left);
-                if(temp.right!=null) que.offer(temp.right);
+                if(node.left!=null) que.offer(node.left);
+                if(node.right!=null) que.offer(node.right);
             }
             
-            if(reverse)
-                Collections.reverse(arr);
+            if(!flag)
+                Collections.reverse(temp);
             
-            reverse=!reverse;
-            
-            for(int x: arr)
-                result.add(x);
+            result.addAll(temp);
+            flag = !flag;
         }
         
         return result;
