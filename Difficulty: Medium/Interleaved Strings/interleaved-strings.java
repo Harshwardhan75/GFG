@@ -1,47 +1,58 @@
 class Solution {
-    int[][] dp;
-    public boolean isInterLeave(String s1, String s2, String s3) {
+    
+    int n1,n2,m;
+    Boolean[][] dp;
+    public boolean isInterleave(String s1, String s2, String s3) {
         // code here
+        int i=0,j=0,k=0;
         
-        if(s1.length()+s2.length()!=s3.length())
+        n1=s1.length();
+        n2=s2.length();
+        m = s3.length();
+        
+        if(n1+n2!=s3.length())
             return false;
-        int n=s1.length();
-        int m=s2.length();
-        int o=s3.length();
-        // dp=new int[n+1][m+1][o+1];
-        dp=new int[n+1][m+1];
+        dp = new Boolean[n1+1][n2+1];
         
-        for(int[] i: dp)
-            // for(int[] j: i)
-                Arrays.fill(i,-1);
-                
-        return solve(s1.toCharArray(),n,
-                        s2.toCharArray(),m,
-                            s3.toCharArray(),o
-                )==1;
+        return solve(s1,0,s2,0,s3,0);
     }
     
-    int solve(char[] s1,int i,
-                            char[] s2,int j,
-                                char[] s3,int k){
+    boolean solve(String s1,int i,String s2,int j,String s3,int k){
+        if(dp[i][j]!=null)   return dp[i][j];
         
-        if(i==0 && j==0 && k==0)
-            return 1;
-        
-        if(dp[i][j]!=-1)
-            return dp[i][j];
-        
-        int status = 0;
-        
-        if(i-1>=0 && s1[i-1]==s3[k-1]){
-            status|=solve(s1,i-1,s2,j,s3,k-1);
+        if(i==n1){
+            while(j<n2 && s2.charAt(j)==s3.charAt(k)){
+                j++;
+                k++;
+            }
+            
+            return dp[i][j] = j==n2;
         }
         
-        if(j-1>=0 && s2[j-1]==s3[k-1]){
-            status|=solve(s1,i,s2,j-1,s3,k-1);
+        if(j==n2){
+            while(i<n1 && s1.charAt(i)==s3.charAt(k)){
+                i++;
+                k++;
+            }
+            
+            return dp[i][j] = i==n1;
         }
-    
-    
+        
+        
+        boolean status = false;
+        
+        if(s1.charAt(i)==s3.charAt(k)){
+            status |= solve(s1,i+1,s2,j,s3,k+1);
+        }
+        
+        if(status)
+            return dp[i][j] = status;
+        
+        if(s2.charAt(j)==s3.charAt(k)){
+            status |= solve(s1,i,s2,j+1,s3,k+1);
+        }
+        
         return dp[i][j] = status;
+        
     }
 }
