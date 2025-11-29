@@ -1,71 +1,39 @@
-//{ Driver Code Starts
-import java.util.*;
 
-class suffix
-{
-     int index;  
-    int rank[] = new int[2];
-}
-
-class UniqueSubStr
-{
-    public static void main (String[] args) {
-        Scanner sc= new Scanner(System.in);
-        int t = sc.nextInt();
+    class Node{
+        Node[] links = new Node[26];
         
-        while(t-- > 0)
-        {
-            String st = sc.next();
-            GfG g = new GfG();
-            System.out.println(g.countDistinctSubstring(st));
-        
-System.out.println("~");
-}
-    }
-}
-// } Driver Code Ends
-
-
-/*You are required to complete this method */
-class GfG
-{
-    
-    static class Node{
-        Node[] links=new Node[26];
-        
-        boolean containsKey(char c){
-            return links[c-'a']!=null;
+        public void put(char c){
+            links[c-'a'] = new Node();
         }
         
-        void put(char c,Node node){
-            links[c-'a']=node;
-        }
-        
-        Node get(char c){
+        public Node get(char c){
             return links[c-'a'];
         }
+        
+        boolean contains(char c){
+            return links[c-'a']!=null;
+        }
     }
-    
-    public static int countDistinctSubstring(String st)
-    {
-        //your code here
+
+
+class Solution {
+    public static int countSubs(String s) {
+        // code here
+        Node root = new Node();
+        int count = 0;
         
-        int count=0;
-        Node root=new Node();
-        int n=st.length();
-        
-        for(int i=0;i<n;i++){
-            Node node=root;
+        for(int i=0;i<s.length();i++){
+            Node temp = root;
             
-            for(int j=i;j<n;j++){
-                if(!node.containsKey(st.charAt(j))){
-                    node.put(st.charAt(j),new Node());
-                    count++;
+            for(int j=i;j<s.length();j++){
+                if(!temp.contains(s.charAt(j)))    {
+                    count ++;
+                    temp.put(s.charAt(j));
                 }
-                node=node.get(st.charAt(j));
+                temp = temp.get(s.charAt(j));
             }
         }
         
-        return count+1;
+        return count;
     }
 }
