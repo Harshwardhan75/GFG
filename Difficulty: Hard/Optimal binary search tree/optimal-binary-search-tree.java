@@ -6,7 +6,7 @@ class Solution {
         this.keys = keys;
         this.freq = freq;
         dp = new int[keys.length][keys.length][keys.length+2];
-        // for(int[][] i: dp)  for(int[] j: i) Arrays.fill(j,-1);
+        for(int[][] i: dp)  for(int[] j: i) Arrays.fill(j,0);
         // return solve(0,keys.length-1,1);
         
         int n = keys.length;
