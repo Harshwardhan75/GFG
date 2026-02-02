@@ -1,37 +1,39 @@
 class Solution {
     public int maxCircularSum(int arr[]) {
         // code here
-        int m=Integer.MIN_VALUE;
         boolean flag = true;
+        int max = Integer.MIN_VALUE;
+        int n = arr.length;
         
-        for(int i=0;i<arr.length;i++){
+        for(int i=0;i<n;i++){
             if(arr[i]>=0){
                 flag = false;
                 break;
             }
-            m=Math.max(m,arr[i]);
+            max = Math.max(max,arr[i]);
         }
         
         if(flag)
-            return m;
+            return max;
         
-        int min =  100000000;
-        int max = -100000000;
+        int min;
         
-        int currmin = 0;
-        int currmax = 0;
-        int total = 0;
+        min = Integer.MAX_VALUE;
+        max = Integer.MIN_VALUE;
         
-        for(int i=0;i<arr.length;i++){
-            currmin+=arr[i];
-            currmax+=arr[i];
+        int total,currMin,currMax;
+        total = currMin = currMax = 0;
+        
+        for(int i=0;i<n;i++){
             total += arr[i];
+            currMin += arr[i];
+            currMax += arr[i];
             
-            max=Math.max(max,currmax);
-            min=Math.min(min,currmin);
+            max = Math.max(max,currMax);
+            min = Math.min(min,currMin);
             
-            currmin=Math.min(currmin,0);
-            currmax=Math.max(currmax,0);
+            currMax = Math.max(0,currMax);
+            currMin = Math.min(0,currMin);
         }
         
         return Math.max(max,total-min);
