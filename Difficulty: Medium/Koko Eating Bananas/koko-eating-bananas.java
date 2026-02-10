@@ -1,29 +1,27 @@
 class Solution {
     public int kokoEat(int[] arr, int k) {
         // code here
-        int low = 1;
-        int n=arr.length;
-        int high = Arrays.stream(arr).max().orElseThrow();
+        int low = 1, high = Arrays.stream(arr).max().orElse(0);
         
         while(low<=high){
-            int mid=(low+high)>>1;
-            if(possible(arr,mid)<=k)
-                high=mid-1;
+            int mid = (low+high)>>1;
+            
+            if(possible(arr,k,mid))
+                high = mid - 1;
             else
-                low=mid+1;
+                low = mid + 1;
         }
         
         return low;
     }
     
-    int possible(int[] arr,int mid){
-        int n=arr.length;
-        int totalHours=0;
+    boolean possible(int[] arr,int k,int mid){
+        int total = 0;
         
         for(int i: arr){
-            totalHours+=(int)Math.ceil((double)i/(double)mid);
+            total += (i+mid-1)/mid;
         }
         
-        return totalHours;
+        return total<=k;
     }
 }
