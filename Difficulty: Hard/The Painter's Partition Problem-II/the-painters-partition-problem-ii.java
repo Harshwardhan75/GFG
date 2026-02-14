@@ -1,43 +1,35 @@
-// User function Template for Java
-
 class Solution {
     public int minTime(int[] arr, int k) {
         // code here
-        int low = 0,high = 0;
-        for(int i: arr){
-            low=Math.max(low,i);
-            high+=i;
-        }
-        
+        int low = Arrays.stream(arr).max().orElse(0);
+        int high = Arrays.stream(arr).sum();
         
         while(low<=high){
-            int mid=(low+high)>>1;
+            int mid = (low+high)>>1;
             
-            int count = findCount(arr,mid);
-            
-            if(count<=k)
-                high=mid-1;
+            if(possible(arr,k,mid))
+                high = mid - 1;
             else
-                low=mid+1;
+                low = mid + 1;
         }
         
         return low;
     }
     
-    int findCount(int[] arr,int cap){
-        int curr=0;
-        int count = 1;
-        int n=arr.length;
+    boolean possible(int[] arr,int k,int mid){
+        int req = 1;
+        int currLoad = 0;
         
-        for(int i=0;i<n;i++){
-            if(curr+arr[i]<=cap)
-                curr+=arr[i];
+        for(int i: arr){
+            if(i+currLoad<=mid){
+                currLoad+=i;
+            }
             else{
-                count++;
-                curr=arr[i];
+                currLoad = i;
+                req++;
             }
         }
         
-        return count;
+        return req<=k;
     }
 }
