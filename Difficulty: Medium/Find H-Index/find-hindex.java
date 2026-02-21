@@ -1,4 +1,8 @@
+
+
+// User function Template for Java
 class Solution {
+    // Function to find hIndex
     public int hIndex(int[] citations) {
         // code here
         int[] freq=new int[citations.length+1];
