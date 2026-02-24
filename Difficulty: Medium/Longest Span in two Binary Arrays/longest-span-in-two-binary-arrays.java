@@ -1,22 +1,21 @@
-
 class Solution {
-    public int longestCommonSum(int[] a1, int[] a2) {
-        // Code here
-        int current = 0;
-        int n=a1.length;
-        int max=0;
-        Map<Integer,Integer> map=new HashMap<>();
+    public int equalSumSpan(int[] a1, int[] a2) {
+        // code here
+        Map<Integer,Integer> map = new HashMap<>();
+        
+        int a = 0 , b = 0;
+        int n = a1.length;
         map.put(0,-1);
+        int max = 0;
         
         for(int i=0;i<n;i++){
-            current+=a1[i];
-            current-=a2[i];
+            a+=a1[i];
+            b+=a2[i];
             
-            if(map.containsKey(current))
-                max=Math.max(max,i-map.get(current));
-            
-            if(!map.containsKey(current))
-                map.put(current,i);
+            if(map.containsKey(a-b))
+                max = Math.max(max,i-map.get(a-b));
+            else
+                map.put(a-b,i);
         }
         
         return max;
