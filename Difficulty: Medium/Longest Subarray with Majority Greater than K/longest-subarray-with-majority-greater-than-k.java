@@ -1,27 +1,42 @@
-
-// User function Template for Java
 class Solution {
-    static int longestSubarray(int[] arr, int k) {
+    public int longestSubarray(int[] arr, int k) {
         // Code Here
-        int n=arr.length;
-        int max = 0;
-        int prefix=0;
-        Map<Integer,Integer> map=new HashMap<>();
-        map.put(0,-1);
+        int n = arr.length;
+        int[] prefix = new int[n];
+        int p = 0;
         
         for(int i=0;i<n;i++){
-            prefix+=arr[i]>k?1:-1;
+            p+=(arr[i]>k)?1:0;
+            prefix[i] = p;
+        }
+        
+        System.out.println("Prefix: "+Arrays.toString(prefix));
+        
+        int max = 0;
+        for(int i=0;i<n;i++){
+            int low = 0, high = i;
+            int ans = high;
             
-            if(prefix>0)
-                max=i+1;
-            else if(map.containsKey(prefix-1))
-                max=Math.max(max,i-map.get(prefix-1));
-            
-            if(!map.containsKey(prefix))
-                map.put(prefix,i);
+            while(low<=high){
+                int mid = (low+high)>>1;
+                int length = i - mid;
+                int higher = prefix[i]-prefix[mid];
+                int less = length-higher;
+                System.out.println(i+" "+low+" "+mid+" "+high);
+                
+                if(higher>less){
+                    ans = mid;
+                    high = mid - 1;
+                }
+                else
+                    low = mid + 1;
+                
+            }
+            System.out.println(i+" "+low+" "+high);
+            System.out.println();
+            max = Math.max(max,i-high);
         }
         
         return max;
     }
 }
-
