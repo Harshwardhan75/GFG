@@ -1,45 +1,53 @@
 class Solution {
-    public static String smallestWindow(String s, String p) {
+    public static String minWindow(String s, String p) {
         // code here
-        int[] freq =  new int[26];
-        for(int i=0;i<p.length();i++){
-            freq[p.charAt(i)-'a']++;
+        int[] freq = new int[26];
+        boolean[] set = new boolean[26];
+        for(char c: p.toCharArray()){
+            freq[c-'a']++;
+            set[c-'a'] = true;
         }
         
-        int length = p.length();
-        int right = 0;
-        int left = 0;
+        int left = 0, right = 0, n = s.length();
         int count = 0;
-        int min = Integer.MAX_VALUE;
-        int index = -1;
+        int min=Integer.MAX_VALUE;
+        int resultIndex = -1;
         
-        while(right<s.length()){
-            char c=s.charAt(right);
-            if(freq[c-'a']>0){
-                count++;    
+        while(right<n){
+            int index = s.charAt(right)-'a';
+            
+            if(set[index]){
+                freq[index]--;
+                count++;
             }
             
-            freq[c-'a']--;
-            
-            while(count==length){
-                c=s.charAt(left);
-                freq[c-'a']++;
-                if(freq[c-'a']>0)
-                    count--;
-                
-                if((right-left+1)<min){
+            while(count>=p.length() && check(freq)){
+                if(right-left+1<min){
                     min = right-left+1;
-                    index = left;
+                    resultIndex = left;
                 }
                 
+                if(set[s.charAt(left)-'a']){
+                    freq[s.charAt(left)-'a']++;
+                    count--;
+                }
                 left++;
             }
-            
             right++;
         }
-        if(index==-1)
-            return "";
-            
-        return s.substring(index,index+min);
+        
+        if(min!=Integer.MAX_VALUE && resultIndex!=-1)
+            return s.substring(resultIndex,resultIndex+min);
+        
+        return "";
+    }
+    
+    static boolean check(int[] freq){
+        for(int i: freq){
+            if(i>0)
+                return false;
+        }
+        
+        return true;
     }
 }
