@@ -9,75 +9,68 @@ class Node {
         left = null;
         right = null;
     }
-}  */
+}
+*/
+
 class Solution {
-    
-    static Node findNode(Node root,int target){
-        if(root==null || root.data==target)
-            return root;
-        
-        Node left = findNode(root.left,target);
-        Node right = findNode(root.right,target);
-        
-        return left!=null?left:right;
-    }
-    
-    public static int minTime(Node root, int target) {
+    public int minTime(Node root, int target) {
         // code here
-        Node t=findNode(root,target);
         
-        Map<Node,Node> map=new HashMap<>();
-        fillMap(map,root);
+        // <child,parent>
+        Map<Node,Node> parentMap = new HashMap<>();
         
-        Queue<Node> que=new LinkedList<>();
-        int time = 0;
-        Set<Node> set=new HashSet<>();
-        que.offer(t);
-        set.add(t);
+        Node start = findTarget(root,target,parentMap);
+        
+        
+        Queue<Node> que = new LinkedList<>();
+        Set<Node> set = new HashSet<>();
+        que.offer(start);
+        set.add(start);
+        int time = -1;
         
         while(!que.isEmpty()){
-            int size=que.size();
+            int size = que.size();
             
             for(int i=1;i<=size;i++){
-                Node temp=que.poll();
+                Node node = que.poll();
                 
-                if(temp.left!=null && !set.contains(temp.left)){
-                    set.add(temp.left);
-                    que.offer(temp.left);
+                if(node.left!=null && !set.contains(node.left)){
+                    set.add(node.left);
+                    que.offer(node.left);
                 }
                 
-                if(temp.right!=null && !set.contains(temp.right)){
-                    set.add(temp.right);
-                    que.offer(temp.right);
+                if(node.right!=null && !set.contains(node.right)){
+                    set.add(node.right);
+                    que.offer(node.right);
                 }
                 
-                if(map.containsKey(temp) && !set.contains(map.get(temp))){
-                    set.add(map.get(temp));
-                    que.offer(map.get(temp));
+                if(parentMap.containsKey(node) && !set.contains(parentMap.get(node))){
+                    set.add(parentMap.get(node));
+                    que.offer(parentMap.get(node));
                 }
             }
             
             time++;
         }
-        return time-1;
+        
+        return time;
     }
     
-    static void fillMap(Map<Node,Node> map,Node root){
-        Queue<Node> que=new LinkedList<>();
-        que.offer(root);
+    Node findTarget(Node root,int target,Map<Node,Node> parentMap){
+        if(root==null)
+            return root;
         
-        while(!que.isEmpty()){
-            Node temp=que.poll();
+        if(root.left!=null)
+            parentMap.put(root.left,root);
+        if(root.right!=null)
+            parentMap.put(root.right,root);
             
-            if(temp.left!=null){
-                map.put(temp.left,temp);
-                que.offer(temp.left);
-            }
+        Node left = findTarget(root.left,target,parentMap);
+        Node right = findTarget(root.right,target,parentMap);
+        
+        if(root.data==target)
+            return root;
             
-            if(temp.right!=null){
-                map.put(temp.right,temp);
-                que.offer(temp.right);
-            }
-        }
+        return left!=null?left:right;
     }
 }
