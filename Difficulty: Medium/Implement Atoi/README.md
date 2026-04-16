@@ -1,0 +1,22 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/implement-atoi/1">Implement Atoi</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given a string&nbsp;<strong>s</strong>, convert it into a 32-bit signed integer (similar to the atoi() function) without using any built-in conversion functions.<br></span><span style="font-size: 18px;">The conversion follows these rules:</span></p>
+<ol>
+<li><span style="font-size: 18px;"><strong>Ignore Leading Whitespaces:</strong>&nbsp;</span><span style="font-size: 18px;">Skip all leading whitespace characters.</span></li>
+<li><span style="font-size: 18px;"><strong>Check Sign:</strong></span><span style="font-size: 18px;">&nbsp;If the next character is either '+' or '-', take it as the sign of the number.&nbsp;</span><span style="font-size: 18px;">If no sign is present, assume the number is positive.</span></li>
+<li><span style="font-size: 18px;"><strong>Read Digits:&nbsp;</strong></span><span style="font-size: 18px;">Read the digits and ignore any leading zeros. Stop reading when a non-digit character is encountered or the end of the string is reached.&nbsp;</span><span style="font-size: 18px;">If no digits are found, return 0.</span></li>
+<li><span style="font-size: 18px;"><strong>Handle Overflow:&nbsp;</strong></span><span style="font-size: 18px;">If the number exceeds the range of a 32-bit signed integer:<br></span><span style="font-size: 18px;">Return 2³¹ − 1 (i.e., 2147483647) if it is greater than the maximum value.<br></span><span style="font-size: 18px;">Return −2³¹ (i.e., -2147483648) if it is smaller than the minimum value.</span></li>
+</ol>
+<p><span style="font-size: 18px;">Return the final integer value.</span></p>
+<p><span style="font-size: 18px;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 18px;"><strong style="font-size: 18px;">Input: </strong><span style="font-size: 18px;">s = "-123"
+</span><strong style="font-size: 18px;">Output: -</strong><span style="font-size: 18px;">123<br></span><strong style="font-size: 18px;">Explanation: </strong><span style="font-size: 18px;">It is possible to convert -123 into an integer so we returned in the form of an integer<br></span></span></pre>
+<pre><span style="font-size: 18px;"><span style="font-size: 18px;"><strong style="font-size: 18px;">Input: </strong><span style="font-size: 18px;">s = " -"
+</span><strong style="font-size: 18px;">Output: </strong><span style="font-size: 18px;">0<br></span><strong style="font-size: 18px;">Explanation: </strong><span style="font-size: 18px;"><span style="font-size: 18px;">No digits are present, therefore the returned answer is 0.<br></span></span></span></span></pre>
+<pre><span style="font-size: 18px;"><strong>Input: </strong>s = " 1231231231311133"
+<strong>Output: </strong>2147483647<br><strong>Explanation: </strong>T</span><span style="font-size: 18px;">he converted number will be greater than 2<sup>31</sup> – 1, therefore print 2<sup>31</sup> – 1 = 2147483647.
+</span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input: </strong>s = "-999999999999"
+<strong>Output: -</strong>2147483648<br><strong>Explanation: </strong></span><span style="font-size: 14pt;">The converted number is smaller than -2<sup>31</sup>, therefore print -2<sup>31</sup> = -2147483648.</span></pre>
+<pre><span style="font-size: 18px;"><strong style="font-size: 18px;">Input: </strong><span style="font-size: 18px;">s = "  -0012gfg4"
+</span><strong style="font-size: 18px;">Output: </strong><span style="font-size: 18px;">-12</span><strong style="font-size: 18px;">
+Explanation: </strong></span><span style="font-size: 18px;">Nothing is read after -12 as a non-digit character ‘g’ was encountered.</span></pre>
+<p><span style="font-size: 18px;"><strong>Constraints:</strong><br>1 ≤ |s| ≤ 15</span></p></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Morgan Stanley</code>&nbsp;<code>Amazon</code>&nbsp;<code>Microsoft</code>&nbsp;<code>Payu</code>&nbsp;<code>Adobe</code>&nbsp;<code>Code Brew</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Strings</code>&nbsp;<code>Design-Pattern</code>&nbsp;<code>Data Structures</code>&nbsp;
